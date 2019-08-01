@@ -8,16 +8,20 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.support.v17.preference.LeanbackPreferenceFragment;
 import android.support.v14.preference.SwitchPreference;
 import android.support.v7.preference.Preference;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.hardkernel.odroid.settings.R;
 import com.hardkernel.odroid.settings.LeanbackAddBackPreferenceFragment;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -130,14 +134,27 @@ public class UpdateFragment extends LeanbackAddBackPreferenceFragment {
     private static String getPath(Context context, Uri uri) {
         final boolean isKitkat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
 
+
+
         // DocumentProvider
         if (isKitkat && DocumentsContract.isDocumentUri(context, uri)) {
+        Log.d(TAG, "getPath 1 " + uri.toString() + " autority " + uri.getAuthority());
             if (isDownloadDocument(uri)) {
                 final String id = DocumentsContract.getDocumentId(uri);
                 final Uri contentUri = ContentUris.
                         withAppendedId(Uri.parse("content://downloads/public_downloads"),
                                 Long.valueOf(id));
                 return getDataColumn(context, contentUri, null, null);
+            } else if(isStorageDocument(uri)){
+                try {
+                    String result = java.net.URLDecoder.decode(uri.toString(), StandardCharsets.UTF_8.name());
+                    result = result.substring(65);
+                    result = Environment.getExternalStorageDirectory().toString() + "/" + result;
+                    Log.d(TAG, "substring " + result);
+                    return result;
+                } catch (UnsupportedEncodingException e) {
+                    // not going to happen - value came from JDK's own StandardCharsets
+                }
             }
         } else if ( "file".equalsIgnoreCase(uri.getScheme())) {
             return uri.getPath();
@@ -171,5 +188,9 @@ public class UpdateFragment extends LeanbackAddBackPreferenceFragment {
      */
     private static boolean isDownloadDocument(Uri uri) {
         return "com.android.providers.downloads.documents".equals(uri.getAuthority());
+    }
+
+    private static boolean isStorageDocument(Uri uri) {
+        return "com.android.externalstorage.documents".equals(uri.getAuthority());
     }
 }

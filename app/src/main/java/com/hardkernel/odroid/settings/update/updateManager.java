@@ -4,11 +4,11 @@ import android.content.SharedPreferences;
 
 public class updateManager {
     public final static String OFFICIAL_URL =
-            "https://dn.odroid.com/S922X/ODROID-N2/Android/";
+            "https://oph.mdrjr.net/voodik/S922X/ODROID-N2/Android/lineage-16.0/";
     public final static String MIRROR_URL =
             "https://www.odroid.in/mirror/dn.odroid.com/S922X/ODROID-N2/Android/";
 
-    public static final long PACKAGE_MAXSIZE = 500 * 1024 * 1024;   /* 500MB */
+    public static final long PACKAGE_MAXSIZE = 700 * 1024 * 1024;   /* 700MB */
     public static final String LATEST_VERSION = "latestupdate_pie";
 
     public static final String KEY_OFFICIAL = "server_official";
@@ -16,8 +16,8 @@ public class updateManager {
     public static final String KEY_CUSTOM = "server_custom";
     public static final String KEY_CHECK_UPDATE = "check_update";
 
-    private static String server = KEY_MIRROR;
-    private static String url = MIRROR_URL;
+    private static String server = KEY_OFFICIAL;
+    private static String url = OFFICIAL_URL;
 
     public static String getRemoteURL() {
         return url;
@@ -40,11 +40,11 @@ public class updateManager {
     }
 
     public static void initServer() {
-        server = pref.getString(SH_KEY_SERVER, KEY_MIRROR);
+        server = pref.getString(SH_KEY_SERVER, KEY_OFFICIAL);
     }
 
     public static void initURL() {
-        setRemoteURL(pref.getString(SH_KEY_URL, MIRROR_URL));
+        setRemoteURL(pref.getString(SH_KEY_URL, OFFICIAL_URL));
     }
 
     public static String getServer() {
@@ -52,7 +52,7 @@ public class updateManager {
     }
 
     public static Boolean isCheckAtBoot() {
-        return pref.getBoolean(KEY_CHECK_UPDATE, true);
+        return pref.getBoolean(KEY_CHECK_UPDATE, false);
     }
 
     public static void setCheckUpdate(boolean check) {
