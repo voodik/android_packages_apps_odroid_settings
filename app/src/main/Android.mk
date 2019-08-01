@@ -60,7 +60,7 @@ ifndef PRODUCT_SHIPPING_API_LEVEL
 LOCAL_PRIVATE_PLATFORM_APIS := true
 endif
 
-FILE := device/hardkernel/$(TARGET_PRODUCT)/files/OdroidSettings/AndroidManifest-common.xml
+FILE := device/hardkernel/odroidn2/files/OdroidSettings/AndroidManifest-common.xml
 
 ifeq ($(FILE), $(wildcard $(FILE)))
 LOCAL_FULL_LIBS_MANIFEST_FILES := $(FILE)
