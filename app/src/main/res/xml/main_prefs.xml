@@ -67,18 +67,18 @@
     <Preference
         android:fragment="com.hardkernel.odroid.settings.IPSettingsFragment"
         android:icon="@drawable/ic_menu_ethernet"
-        android:key="misc"
-        android:title="@string/ethernet_settings" />
-    <Preference
-        android:fragment="com.hardkernel.odroid.settings.IPSettingsFragment"
-        android:icon="@drawable/ic_menu_ethernet"
-        android:key="misc"
+        android:key="ipsettings"
         android:title="@string/ethernet_settings" />
     <Preference
         android:fragment="com.hardkernel.odroid.settings.HeartBeatFragment"
         android:icon="@drawable/heartbeat_icon"
         android:key="led"
         android:title="@string/led" />
+    <Preference
+        android:fragment="com.hardkernel.odroid.settings.shortcut.ShortcutFragment"
+        android:icon="@drawable/ic_app_shortcut"
+        android:key="shortcut"
+        android:title="@string/app_shortcut" />
     <Preference
         android:icon="@drawable/ic_info_outline"
         android:key="netflix_esn"
