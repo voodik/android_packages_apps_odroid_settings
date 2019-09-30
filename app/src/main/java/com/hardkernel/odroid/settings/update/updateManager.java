@@ -1,10 +1,17 @@
 package com.hardkernel.odroid.settings.update;
 
 import android.content.SharedPreferences;
+import android.os.SystemProperties;
 
 public class updateManager {
-    public final static String OFFICIAL_URL =
-            "https://oph.mdrjr.net/voodik/S922X/ODROID-N2/Android/lineage-16.0/";
+
+    private static final boolean GAPPS = SystemProperties.getBoolean("ro.opengapps_installed", false);
+
+    public final static String OFFICIAL_URL = GAPPS ?
+        "https://oph.mdrjr.net/voodik/S922X/ODROID-N2/Android/lineage-16.0/" :
+        "https://oph.mdrjr.net/voodik/S922X/ODROID-N2/Android/lineage-16.0-ng/";
+
+
     public final static String MIRROR_URL =
             "https://www.odroid.in/mirror/dn.odroid.com/S922X/ODROID-N2/Android/";
 
