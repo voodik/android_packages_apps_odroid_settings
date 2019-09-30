@@ -30,10 +30,13 @@ import com.hardkernel.odroid.settings.R;
 public class MiscFragment extends LeanbackAddBackPreferenceFragment {
     private static final String TAG = "MiscFragment";
 
+    private static final String BT_DISABLE_PROP = "persist.disable_bluetooth";
     private static final String BT_SINK_PROP = "persist.service.bt.a2dp.sink";
+    private static final String AVRCP_ENABLE_PROPERTY = "persist.bluetooth.enablenewavrcp";
     private static final String GPS_PROP = "persist.disable_location";
     private static final String SHUT_PROP = "persist.pwbtn.shutdown";
 
+	private TwoStatePreference pref_disable_bt;
 	private TwoStatePreference pref_bt_sink;
 	private TwoStatePreference pref_gps;
 	private TwoStatePreference pref_shut;
@@ -57,9 +60,11 @@ public class MiscFragment extends LeanbackAddBackPreferenceFragment {
         public void onCreatePreferences(Bundle savedInstanceState, String s) {
             setPreferencesFromResource(R.xml.misc_settings, null);
 
+			pref_disable_bt = (TwoStatePreference) findPreference(getString(R.string.pref_disable_bluetooth));
 			pref_bt_sink = (TwoStatePreference) findPreference(getString(R.string.pref_enable_bluetooth_sink));
 			pref_gps = (TwoStatePreference) findPreference(getString(R.string.pref_enable_gps));
 			pref_shut = (TwoStatePreference) findPreference(getString(R.string.pref_force_shutdown_without_dialog));
+			pref_disable_bt.setChecked(SystemProperties.getBoolean(BT_DISABLE_PROP, true));
 			pref_bt_sink.setChecked(SystemProperties.getBoolean(BT_SINK_PROP, false));
 			pref_gps.setChecked(!SystemProperties.getBoolean(GPS_PROP, true));
 			pref_shut.setChecked(SystemProperties.getBoolean(SHUT_PROP, false));
@@ -69,11 +74,21 @@ public class MiscFragment extends LeanbackAddBackPreferenceFragment {
         public void onActivityCreated(Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
 
+            pref_disable_bt.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    Boolean value = (Boolean) newValue;
+                    SystemProperties.set(BT_DISABLE_PROP, value ? "true" : "false");
+                    return true;
+                }
+            });
+
             pref_bt_sink.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     Boolean value = (Boolean) newValue;
                     SystemProperties.set(BT_SINK_PROP, value ? "true" : "false");
+                    SystemProperties.set(AVRCP_ENABLE_PROPERTY, value ? "false" : "true");
                     return true;
                 }
             });

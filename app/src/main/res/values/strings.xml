@@ -59,6 +59,8 @@
     <string name="playback_settings">Playback settings</string>
     <!-- Preference which manages miscellaneous settings. -->
     <string name="misc_settings">Misc settings</string>
+    <string name="pref_disable_bluetooth">pref_disable_bluetooth</string>
+    <string name="pref_disable_bluetooth_title">Disable Bluetooth Service</string>
     <string name="pref_enable_bluetooth_sink">pref_enable_bluetooth_sink</string>
     <string name="pref_enable_bluetooth_sink_title">Enable Bluetooth Sink profile</string>
     <string name="pref_enable_gps">pref_enable_gps</string>
