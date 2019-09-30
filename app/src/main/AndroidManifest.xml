@@ -27,10 +27,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Settings"
         android:usesCleartextTraffic="true">
-        <receiver
-            android:name=".update.installReceiver"
-            android:enabled="true"
-            android:exported="true"></receiver>
 
         <service
             android:name=".OdridService"
@@ -214,7 +210,8 @@
             </intent-filter>
         </receiver>
         <receiver android:name=".update.installReceiver"
-            android:enabled="true">
+            android:enabled="true"
+	    android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_INSTALL" />
             </intent-filter>
