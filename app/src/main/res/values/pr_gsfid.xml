@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gsf_reg_text">Go to <a href="https://www.google.com/android/uncertified">Google\'s device registration page</a> and register your GSF ID</string>
+    <string name="gsf_id_title">GSF ID</string>
+    <string name="copy_text">Copy</string>
+    <string name="pref_gsf_id">gsf_id_pref</string>
+    <string name="pref_gsf_id_title">GSF ID</string>
+    <string name="pref_gsf_id_sum">Show Google Framework Services Android ID</string>
+</resources>
