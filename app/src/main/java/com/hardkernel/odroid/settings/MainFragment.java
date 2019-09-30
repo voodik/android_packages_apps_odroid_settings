@@ -66,6 +66,7 @@ public class MainFragment extends LeanbackAddBackPreferenceFragment {
     private static final String KEY_PLAYBACK_SETTINGS = "playback_settings";
     private static final String KEY_NETFLIX_ESN = "netflix_esn";
     private static final String KEY_MORE_SETTINGS = "more";
+    private static final String KEY_UPDATE_SETTINGS = "update";
 
     private String mEsnText;
 
@@ -99,6 +100,7 @@ public class MainFragment extends LeanbackAddBackPreferenceFragment {
         final Preference powerKeyPref = findPreference(KEY_POWERKEY);
         //HDMI cec/Playback Settings display only in Mbox
         final Preference netflixesnPref = findPreference(KEY_NETFLIX_ESN);
+        final Preference updatePref = findPreference(KEY_UPDATE_SETTINGS);
 
         hdmicecPref.setVisible(is_from_live_tv ? false : (getContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_HDMI_CEC)
                     && SettingsConstant.needDroidlogicHdmicecFeature(getContext())));
@@ -120,6 +122,8 @@ public class MainFragment extends LeanbackAddBackPreferenceFragment {
         } else if (!isPackageInstalled(getActivity(), MORE_SETTINGS_APP_PACKAGE)) {
             getPreferenceScreen().removePreference(moreSettingsPref);
         }
+
+        updatePref.setVisible(false);
     }
 
     @Override
