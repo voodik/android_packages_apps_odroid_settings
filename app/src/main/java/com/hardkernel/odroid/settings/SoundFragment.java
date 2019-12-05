@@ -75,12 +75,15 @@ public class SoundFragment extends LeanbackAddBackPreferenceFragment implements 
         switch (selected) {
             case 0: //Hdmi, lineout I2S
                 soundSelectPref.setSummary("HDMI, Lineout");
+                soundSelectPref.setValueIndex(0);
                 break;
             case 1: // SPDIF on 7pin
                 soundSelectPref.setSummary("SPDIF");
+                soundSelectPref.setValueIndex(1);
                 break;
             case 8: // I2S on 7pin
                 soundSelectPref.setSummary("I2S");
+                soundSelectPref.setValueIndex(8);
                 break;
         }
     }
@@ -90,16 +93,6 @@ public class SoundFragment extends LeanbackAddBackPreferenceFragment implements 
         if (TextUtils.equals(preference.getKey(), KEY_SOUND_SELECT)) {
             final String selection = (String)newValue;
             SystemProperties.set(SOUND_SELECT, selection);
-            Properties properties = new Properties();
-            File propertyFile = new File(PROP_FILE);
-            try {
-                FileInputStream inStream = new FileInputStream(propertyFile);
-                properties.load(inStream);
-                properties.setProperty(SOUND_SELECT, selection);
-                FileOutputStream outStream = new FileOutputStream(propertyFile);
-                properties.store(outStream,"Audio Changed");
-                outStream.close();
-            } catch(Exception e) {}
             updateFormatPreferencesStates();
             return true;
         }
