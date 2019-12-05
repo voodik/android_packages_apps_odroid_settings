@@ -83,7 +83,7 @@ public class SoundFragment extends LeanbackAddBackPreferenceFragment implements 
                 break;
             case 8: // I2S on 7pin
                 soundSelectPref.setSummary("I2S");
-                soundSelectPref.setValueIndex(8);
+                soundSelectPref.setValueIndex(2);
                 break;
         }
     }
