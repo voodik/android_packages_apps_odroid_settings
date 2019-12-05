@@ -1,10 +1,15 @@
 package com.hardkernel.odroid.settings.update;
 
+import android.os.Build;
+
 class packageName {
+
+    private static final boolean IS64 = Build.SUPPORTED_64_BIT_ABIS.length > 0;
+
     private static final String HEADER = "updatepackage";
     private static final String MODEL = "odroidn2";
     private static final String VARIANT = "userdebug";
-    private static final String BRANCH = "s922_9.0.0_master";
+    private static final String BRANCH = IS64 ? "s922_9.0.0_64_master" : "s922_9.0.0_master";
 
     private int version = -1;
 

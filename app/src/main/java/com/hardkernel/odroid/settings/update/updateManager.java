@@ -1,22 +1,26 @@
 package com.hardkernel.odroid.settings.update;
 
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.SystemProperties;
 
 public class updateManager {
 
     private static final boolean GAPPS = SystemProperties.getBoolean("ro.opengapps_installed", false);
+    private static final boolean IS64 = Build.SUPPORTED_64_BIT_ABIS.length > 0;
 
-    public final static String OFFICIAL_URL = GAPPS ?
-        "https://oph.mdrjr.net/voodik/S922X/ODROID-N2/Android/lineage-16.0/" :
-        "https://oph.mdrjr.net/voodik/S922X/ODROID-N2/Android/lineage-16.0-ng/";
+    private static final String GSTR =  GAPPS ? "" : "-ng";
+    private static final String ABISTR =  IS64 ? "-64" : "";
+
+    public final static String OFFICIAL_URL =
+            String.format("https://oph.mdrjr.net/voodik/S922X/ODROID-N2/Android/lineage-16.0%s%s/", ABISTR, GSTR);
 
 
     public final static String MIRROR_URL =
             "https://www.odroid.in/mirror/dn.odroid.com/S922X/ODROID-N2/Android/";
 
-    public static final long PACKAGE_MAXSIZE = 700 * 1024 * 1024;   /* 700MB */
-    public static final String LATEST_VERSION = "latestupdate_pie";
+    public static final long PACKAGE_MAXSIZE = 800 * 1024 * 1024;   /* 800MB */
+    public static final String LATEST_VERSION = IS64 ? "latestupdate_pie_64" : "latestupdate_pie";
 
     public static final String KEY_OFFICIAL = "server_official";
     public static final String KEY_MIRROR = "server_mirror";
