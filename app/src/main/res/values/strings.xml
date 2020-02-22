@@ -65,6 +65,8 @@
     <string name="pref_enable_bluetooth_sink_title">Enable Bluetooth Sink profile</string>
     <string name="pref_enable_gps">pref_enable_gps</string>
     <string name="pref_enable_gps_title">Enable GPS</string>
+    <string name="pref_enable_wlan_ps">pref_enable_wlan_ps</string>
+    <string name="pref_enable_wlan_ps_title">Enable Wi-Fi power saving</string>
     <string name="pref_force_shutdown_without_dialog">pref_force_shutdown_without_dialog</string>
     <string name="pref_force_shutdown_without_dialog_title">Force shutdown without dialog</string>
     <!-- Preference which manages Ethernet settings. -->

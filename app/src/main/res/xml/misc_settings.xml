@@ -36,6 +36,10 @@
         android:title="@string/pref_enable_gps_title" />
 
     <SwitchPreference
+        android:key="@string/pref_enable_wlan_ps"
+        android:title="@string/pref_enable_wlan_ps_title" />
+
+    <SwitchPreference
         android:key="@string/pref_force_shutdown_without_dialog"
         android:title="@string/pref_force_shutdown_without_dialog_title" />
 

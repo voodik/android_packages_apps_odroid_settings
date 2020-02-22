@@ -55,12 +55,14 @@ public class MiscFragment extends LeanbackAddBackPreferenceFragment
     private static final String BT_SINK_PROP = "persist.service.bt.a2dp.sink";
     private static final String AVRCP_ENABLE_PROPERTY = "persist.bluetooth.enablenewavrcp";
     private static final String GPS_PROP = "persist.disable_location";
+    private static final String WLAN_PS_PROP = "persist.enable_wlan_ps";
     private static final String SHUT_PROP = "persist.pwbtn.shutdown";
 
 	private Preference pref_gsf_id;
 	private TwoStatePreference pref_disable_bt;
 	private TwoStatePreference pref_bt_sink;
 	private TwoStatePreference pref_gps;
+	private TwoStatePreference pref_enable_wlan_ps;
 	private TwoStatePreference pref_shut;
 
 	private static final Uri sUri = Uri.parse("content://com.google.android.gsf.gservices");
@@ -105,10 +107,12 @@ public class MiscFragment extends LeanbackAddBackPreferenceFragment
 			pref_disable_bt = (TwoStatePreference) findPreference(getString(R.string.pref_disable_bluetooth));
 			pref_bt_sink = (TwoStatePreference) findPreference(getString(R.string.pref_enable_bluetooth_sink));
 			pref_gps = (TwoStatePreference) findPreference(getString(R.string.pref_enable_gps));
+			pref_enable_wlan_ps = (TwoStatePreference) findPreference(getString(R.string.pref_enable_wlan_ps));
 			pref_shut = (TwoStatePreference) findPreference(getString(R.string.pref_force_shutdown_without_dialog));
 			pref_disable_bt.setChecked(SystemProperties.getBoolean(BT_DISABLE_PROP, true));
 			pref_bt_sink.setChecked(SystemProperties.getBoolean(BT_SINK_PROP, false));
 			pref_gps.setChecked(!SystemProperties.getBoolean(GPS_PROP, true));
+			pref_enable_wlan_ps.setChecked(SystemProperties.getBoolean(WLAN_PS_PROP, false));
 			pref_shut.setChecked(SystemProperties.getBoolean(SHUT_PROP, false));
 
         }
@@ -144,6 +148,16 @@ public class MiscFragment extends LeanbackAddBackPreferenceFragment
                 Boolean value = (Boolean) newValue;
                 SystemProperties.set(GPS_PROP, value ? "false" : "true");
                 Log.v(TAG, "onPreferenceChange: pref_gps " + newValue);
+                return true;
+            }
+        });
+
+        pref_enable_wlan_ps.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                Boolean value = (Boolean) newValue;
+                SystemProperties.set(WLAN_PS_PROP, value ? "true" : "false");
+                Log.v(TAG, "onPreferenceChange: pref_enable_wlan_ps " + newValue);
                 return true;
             }
         });
