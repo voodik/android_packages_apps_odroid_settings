@@ -39,7 +39,7 @@ import java.util.Properties;
 public class SoundFragment extends LeanbackAddBackPreferenceFragment implements Preference.OnPreferenceChangeListener {
     public static final String TAG = "SoundFragment";
     private static final String KEY_SOUND_SELECT = "sound_select";
-    private static final String SOUND_SELECT = "media.audio_hal.device";
+    private static final String SOUND_SELECT = "persist.media.audio_hal.device";
     private static final String PROP_FILE = "/odm/default.prop";
 
     public static SoundFragment newInstance() {
