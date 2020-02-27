@@ -85,6 +85,11 @@
         android:key="shortcut"
         android:title="@string/app_shortcut" />
     <Preference
+        android:fragment="com.hardkernel.odroid.settings.KioskFragment"
+        android:icon="@drawable/kiosk_icon"
+        android:key="kiosk"
+        android:title="@string/kiosk" />
+    <Preference
         android:icon="@drawable/ic_info_outline"
         android:key="netflix_esn"
         android:title="@string/netflix_esn"/>
