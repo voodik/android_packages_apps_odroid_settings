@@ -1,6 +1,7 @@
 package com.hardkernel.odroid.settings;
 
 import android.os.Bundle;
+import android.os.SystemProperties;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.TwoStatePreference;
 import android.widget.Toast;
@@ -8,7 +9,7 @@ import android.widget.Toast;
 public class KioskFragment extends LeanbackAddBackPreferenceFragment {
 
     private static final String KEY_KIOSK_SWITCH = "kiosk_switch";
-    private static final String KIOSK_MODE = "kiosk_mode";
+    private static final String KIOSK_MODE = "persist.kiosk_mode";
     private TwoStatePreference kioskPref;
 
     public static boolean kioskMode = false;
@@ -27,7 +28,7 @@ public class KioskFragment extends LeanbackAddBackPreferenceFragment {
         setPreferencesFromResource(R.xml.kisok, null);
         kioskPref = (TwoStatePreference)findPreference(KEY_KIOSK_SWITCH);
 
-        kioskMode = EnvProperty.getBoolean(KIOSK_MODE, false);
+        kioskMode = SystemProperties.getBoolean(KIOSK_MODE, false);
         kioskPref.setChecked(kioskMode);
     }
 
@@ -40,7 +41,7 @@ public class KioskFragment extends LeanbackAddBackPreferenceFragment {
         switch (key) {
             case KEY_KIOSK_SWITCH:
                 kioskMode = kioskPref.isChecked();
-                EnvProperty.setAndSave(KIOSK_MODE, kioskMode, "Kiosk Mode");
+                SystemProperties.set(KIOSK_MODE, Boolean.toString(kioskMode));
                 Toast.makeText(getContext(),
                         "Kiosk Mode will " + (kioskMode ? "": "not ")
                                 +"applied after reboot!",
