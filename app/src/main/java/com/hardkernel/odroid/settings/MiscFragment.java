@@ -53,7 +53,6 @@ public class MiscFragment extends LeanbackAddBackPreferenceFragment
 
     private static final String BT_DISABLE_PROP = "persist.disable_bluetooth";
     private static final String BT_SINK_PROP = "persist.service.bt.a2dp.sink";
-    private static final String AVRCP_ENABLE_PROPERTY = "persist.bluetooth.enablenewavrcp";
     private static final String GPS_PROP = "persist.disable_location";
     private static final String WLAN_PS_PROP = "persist.enable_wlan_ps";
     private static final String SHUT_PROP = "persist.pwbtn.shutdown";
@@ -137,7 +136,6 @@ public class MiscFragment extends LeanbackAddBackPreferenceFragment
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     Boolean value = (Boolean) newValue;
                     SystemProperties.set(BT_SINK_PROP, value ? "true" : "false");
-                    SystemProperties.set(AVRCP_ENABLE_PROPERTY, value ? "false" : "true");
                     return true;
                 }
             });
