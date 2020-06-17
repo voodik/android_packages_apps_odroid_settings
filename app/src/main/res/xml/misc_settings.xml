@@ -43,4 +43,8 @@
         android:key="@string/pref_force_shutdown_without_dialog"
         android:title="@string/pref_force_shutdown_without_dialog_title" />
 
+    <SwitchPreference
+        android:key="@string/pref_disable_usb_perms_dialog"
+        android:title="@string/pref_disable_usb_perms_dialog_title" />
+
 </PreferenceScreen>
