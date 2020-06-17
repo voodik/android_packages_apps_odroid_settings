@@ -147,7 +147,7 @@ public class HdmiCecFragment extends LeanbackAddBackPreferenceFragment {
 		mCecOnekeyPoweroffPref.setChecked(readCecOption(Settings.Global.HDMI_CONTROL_AUTO_DEVICE_OFF_ENABLED));
 		mCecOnekeyPoweroffPref.setEnabled(hdmiControlEnabled);
 		//mCecAutoChangeLanguagePref.setChecked(readCecOption(HdmiCecManager.HDMI_CONTROL_AUTO_CHANGE_LANGUAGE_ENABLED));
-		mCecAutoChangeLanguagePref.setChecked(SystemProperties.getBoolean(PERSIST_HDMI_CEC_SET_MENU_LANGUAGE, true));
+		mCecAutoChangeLanguagePref.setChecked(SystemProperties.getBoolean(PERSIST_HDMI_CEC_SET_MENU_LANGUAGE, false));
 		mCecAutoChangeLanguagePref.setEnabled(hdmiControlEnabled);
 	}
 

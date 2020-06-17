@@ -1,5 +1,7 @@
 package com.hardkernel.odroid.settings;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConfigEnv {
+    private final static String TAG = "ConfigEnv";
     private final static String path = "/odm/env.ini";
 
     public static String getBigCoreClock() {
@@ -38,6 +41,10 @@ public class ConfigEnv {
         return getValue("voutmode");
     }
 
+    public static boolean getDisplayAutodetect() {
+        return getValue("display_autodetect").equals("true");
+    }
+
     public static int getDisplayZoomrate() {
         return Integer.parseInt(getValue("zoom_rate"));
     }
@@ -52,6 +59,50 @@ public class ConfigEnv {
 
     public static String getHeartBeat() {
         return getValue("heartbeat");
+    }
+
+    public static String getAdjustScreenWay() {
+
+        String value = getValue("adjustScreenWay");
+        if (value == null) {
+            setAdjustScreenWay("zoom");
+            return "zoom";
+        }
+        return value;
+    }
+
+    public static int[] getScreenAlignment() {
+        String align[];
+        String alignment;
+
+        try {
+            alignment = getValue("screenAlignment");
+            align = alignment.split(" ");
+            int[] result = {
+                    Integer.valueOf(align[0]), // left
+                    Integer.valueOf(align[1]), // top
+                    Integer.valueOf(align[2]), // right
+                    Integer.valueOf(align[3]) // bottom
+            };
+            return result;
+        } catch (Exception e) {
+            Log.e(TAG, "env.ini doesn't have screenAlignment option");
+            setScreenAlignment(0, 0, 0, 0);
+        }
+        return new int[]{0, 0, 0, 0};
+    }
+
+    public static boolean getAutoFramerateState() {
+        try {
+            if (getValue("autoFramerate").equals("true"))
+                return true;
+            else
+                return false;
+        } catch (Exception e) {
+            Log.e(TAG, "env.ini doesn't have autoFramerate option");
+            setAutoFramerate(false);
+        }
+        return false;
     }
 
     private static String getValue(String keyWord) {
@@ -140,11 +191,25 @@ public class ConfigEnv {
         setValue("heartbeat", mode);
     }
 
+    public static void setAdjustScreenWay(String way) {
+        setValue("adjustScreenWay", way);
+    }
+
+    public static void setScreenAlignment(int left, int top, int right, int bottom) {
+        String alignment = "" + left + " " + top + " " + right + " " + bottom;
+        setValue("screenAlignment", alignment);
+    }
+
+    public static void setAutoFramerate(boolean state) {
+        setValue("autoFramerate", state?"true":"false");
+    }
+
     private static void setValue (String keyWord, String val) {
         _setValue(keyWord + "=", val);
     }
 
     private static void _setValue (String startTerm,String val) {
+        boolean isSet = false;
         try {
             File boot_ini = new File(path);
             FileReader fileReader = new FileReader(boot_ini);
@@ -153,8 +218,15 @@ public class ConfigEnv {
             List<String> lines = new ArrayList<>();
             String line;
             while ((line = reader.readLine()) != null) {
-                if (line.startsWith(startTerm))
+                if (line.startsWith(startTerm)) {
                     line = startTerm + "\"" + val + "\"";
+                    isSet = true;
+                }
+                lines.add(line + "\n");
+            }
+
+            if (isSet == false) {
+                line = startTerm + "\"" + val + "\"";
                 lines.add(line + "\n");
             }
 
