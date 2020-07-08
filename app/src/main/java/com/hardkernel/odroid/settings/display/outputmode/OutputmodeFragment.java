@@ -237,6 +237,7 @@ public class OutputmodeFragment extends LeanbackAddBackPreferenceFragment
                     // save current resolution mode.
                     ConfigEnv.setHdmiMode(curMode);
                     ConfigEnv.setDisplayZoom(100);
+                    mOutputUiManager.change2NewMode(curMode);
                     mOutputUiManager.setValidColorAttribute(curMode);
                     reboot();
                 }
@@ -351,9 +352,7 @@ public class OutputmodeFragment extends LeanbackAddBackPreferenceFragment
     }
 
     private void setVoutmode() {
-        if ("ODROID-VU5/7".equals(curMode)
-                || "ODROID-VU7 Plus".equals(curMode)
-                || "ODROID-VU8".equals(curMode)) {
+        if (curMode.startsWith("ODROID-VU")) {
             if (voutmode != "dvi") {
                 voutmode = "dvi";
                 ConfigEnv.setVoutMode(voutmode);
