@@ -30,6 +30,11 @@
         android:key="cpu"
         android:title="@string/cpu" />
     <Preference
+        android:fragment="com.hardkernel.odroid.settings.gpu.GpuFragment"
+        android:icon="@drawable/ic_gpu"
+        android:key="gpu"
+        android:title="@string/gpu" />
+    <Preference
         android:fragment="com.hardkernel.odroid.settings.rotation.RotationFragment"
         android:icon="@drawable/ic_sync"
         android:key="rotation"
@@ -89,6 +94,11 @@
         android:icon="@drawable/kiosk_icon"
         android:key="kiosk"
         android:title="@string/kiosk" />
+    <Preference
+        android:fragment="com.hardkernel.odroid.settings.dtbo.DTBOverlayFragment"
+        android:icon="@drawable/dtb_overlay_icon"
+        android:key="dtbo"
+        android:title="@string/overlay_title" />
     <Preference
         android:icon="@drawable/ic_info_outline"
         android:key="netflix_esn"

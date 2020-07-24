@@ -307,4 +307,9 @@
     <string name="kiosk_mode">Kiosk Mode</string>
     <string name="kiosk_mode_info">Disable the navigation bar and status bar</string>
     <string name="autoframerate">AUTO FRAMERATE</string>
+    <string name="gpu">GPU</string>
+    <string name="scale_mode">Governor</string>
+    <string name="overlays">DTB Overlay List</string>
+    <string name="overlay_size">DTBO Size Resize</string>
+    <string name="overlay_title">DTB Overlay</string>
 </resources>
