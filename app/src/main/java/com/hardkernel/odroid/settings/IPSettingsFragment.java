@@ -19,12 +19,12 @@ package com.hardkernel.odroid.settings;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Keep;
-import android.support.v17.preference.LeanbackPreferenceFragment;
-import android.support.v14.preference.SwitchPreference;
-import android.support.v7.preference.CheckBoxPreference;
-import android.support.v7.preference.Preference;
-import android.support.v7.preference.PreferenceScreen;
+import androidx.annotation.Keep;
+import androidx.leanback.preference.LeanbackPreferenceFragment;
+import androidx.preference.SwitchPreference;
+import androidx.preference.CheckBoxPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceScreen;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;

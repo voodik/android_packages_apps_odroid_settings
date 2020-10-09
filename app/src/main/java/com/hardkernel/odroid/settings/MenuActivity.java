@@ -19,11 +19,11 @@ package com.hardkernel.odroid.settings;
 import android.app.Activity;
 import android.os.Bundle;
 import android.graphics.drawable.Drawable;
-import android.support.v17.leanback.app.BrowseFragment;
-import android.support.v17.leanback.widget.ListRow;
-import android.support.v17.leanback.widget.ListRowPresenter;
-import android.support.v17.leanback.widget.ClassPresenterSelector;
-import android.support.v17.leanback.widget.ObjectAdapter;
+import androidx.leanback.app.BrowseFragment;
+import androidx.leanback.widget.ListRow;
+import androidx.leanback.widget.ListRowPresenter;
+import androidx.leanback.widget.ClassPresenterSelector;
+import androidx.leanback.widget.ObjectAdapter;
 
 /**
  * Activity showing a menu of settings.

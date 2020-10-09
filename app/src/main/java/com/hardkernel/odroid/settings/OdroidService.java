@@ -4,12 +4,14 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.SystemProperties;
 import android.os.RecoverySystem;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import android.widget.Toast;
 
 import com.hardkernel.odroid.settings.update.DownloadReceiver;
@@ -21,7 +23,9 @@ public class OdroidService extends Service {
 
     final static String Channel_id = "UpdateNotification";
     final public static int Notification_id = 0x201920;
-
+    private static final String PROP_BUILD_CHARACTERISTICS = "ro.build.characteristics";
+	private static final boolean IS_ATV = SystemProperties.get(PROP_BUILD_CHARACTERISTICS, "tablet").equalsIgnoreCase("tv");
+	public Context mContext;
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         String cmd = intent.getStringExtra("cmd");
@@ -66,13 +70,16 @@ public class OdroidService extends Service {
         Intent installIntent = new Intent(this, installReceiver.class);
         installIntent.setAction("android.intent.action.PACKAGE_INSTALL");
         installIntent.putExtra(installReceiver.INSTALL_NOTIFICATION_ID,
-                installReceiver.INSTALL_NOTIFICATION_VALUE);
+        installReceiver.INSTALL_NOTIFICATION_VALUE);
         installIntent.putExtra("packageFile", packageBundle);
 
-        createNotificationChannel();
-
-        buildNNotify("Odroid-Setting Update", "Start Update",
-                "Update", installIntent);
+        if (IS_ATV) {
+            mContext.sendBroadcast(installIntent);
+        } else {
+            createNotificationChannel();
+            buildNNotify("Odroid-Setting Update", "Start Update",
+                    "Update", installIntent);
+        }
     }
 
     private void buildNNotify(String contentTitle, String contentMsg,
@@ -104,5 +111,11 @@ public class OdroidService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         return null;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mContext = getApplicationContext();
     }
 }

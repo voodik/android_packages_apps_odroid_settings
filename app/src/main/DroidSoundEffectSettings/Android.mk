@@ -24,16 +24,17 @@ LOCAL_PROGUARD_FLAG_FILES := proguard.cfg
 LOCAL_USE_AAPT2 := true
 
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-    android-support-v7-recyclerview \
-    android-support-v7-preference \
-    android-support-v7-appcompat \
-    android-support-v14-preference \
-    android-support-v17-preference-leanback \
-    android-support-v17-leanback \
-    android-arch-lifecycle-extensions
+    androidx.legacy_legacy-support-v4 \
+    androidx.recyclerview_recyclerview \
+    androidx.preference_preference \
+    androidx.appcompat_appcompat \
+    androidx.legacy_legacy-preference-v14 \
+    androidx.leanback_leanback-preference \
+    androidx.leanback_leanback \
+    androidx.lifecycle_lifecycle-extensions
 
 LOCAL_STATIC_JAVA_LIBRARIES := \
-    android-arch-lifecycle-common-java8
+    androidx.lifecycle_lifecycle-common-java8
 
 LOCAL_RESOURCE_DIR := \
     $(LOCAL_PATH)/res

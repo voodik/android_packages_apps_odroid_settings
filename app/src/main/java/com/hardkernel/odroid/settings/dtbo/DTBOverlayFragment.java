@@ -7,7 +7,7 @@ import com.hardkernel.odroid.settings.R;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.preference.Preference;
+import androidx.preference.Preference;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.widget.EditText;

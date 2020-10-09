@@ -5,9 +5,9 @@ import android.os.Bundle;
 
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.support.v7.preference.Preference;
-import android.support.v7.preference.PreferenceScreen;
-import android.support.v17.preference.LeanbackPreferenceFragment;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceScreen;
+import androidx.leanback.preference.LeanbackPreferenceFragment;
 import android.util.Log;
 import android.view.Display;
 

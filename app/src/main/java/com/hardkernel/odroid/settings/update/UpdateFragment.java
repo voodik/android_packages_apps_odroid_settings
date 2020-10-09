@@ -9,10 +9,11 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.SystemProperties;
 import android.provider.DocumentsContract;
-import android.support.v17.preference.LeanbackPreferenceFragment;
-import android.support.v14.preference.SwitchPreference;
-import android.support.v7.preference.Preference;
+import androidx.leanback.preference.LeanbackPreferenceFragment;
+import androidx.preference.SwitchPreference;
+import androidx.preference.Preference;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -28,12 +29,14 @@ import static android.app.Activity.RESULT_OK;
 
 public class UpdateFragment extends LeanbackAddBackPreferenceFragment {
 
-    private static final String TAG = "UpdateFragment";
+    private static final String TAG = "OdroidUpdateFragment";
     public static final int FILE_SELECT_CODE = 101;
 
     private static final String KEY_FROM_ONLINE = "update_from_online";
     private static final String KEY_SELECT_SERVER = "selected_server";
     private static final String KEY_FROM_STORAGE = "update_from_storage";
+    private static final String PROP_BUILD_CHARACTERISTICS = "ro.build.characteristics";
+	private static final boolean IS_ATV = SystemProperties.get(PROP_BUILD_CHARACTERISTICS, "tablet").equalsIgnoreCase("tv");
 
     private static Preference update_server;
     private static SwitchPreference checkAtUpdate;
@@ -74,6 +77,7 @@ public class UpdateFragment extends LeanbackAddBackPreferenceFragment {
 
         checkAtUpdate = (SwitchPreference) findPreference(updateManager.KEY_CHECK_UPDATE);
         checkAtUpdate.setChecked(updateManager.isCheckAtBoot());
+        checkAtUpdate.setEnabled(false);
     }
 
     @Override
@@ -83,7 +87,7 @@ public class UpdateFragment extends LeanbackAddBackPreferenceFragment {
 
         switch (key) {
             case KEY_FROM_ONLINE:
-                UpdatePackage.checkLatestVersion(context);
+//                UpdatePackage.checkLatestVersion(context);
                 break;
             case KEY_FROM_STORAGE:
                 updatePackageFromStorage();
@@ -149,7 +153,8 @@ public class UpdateFragment extends LeanbackAddBackPreferenceFragment {
                 try {
                     String result = java.net.URLDecoder.decode(uri.toString(), StandardCharsets.UTF_8.name());
                     result = result.substring(65);
-                    result = Environment.getExternalStorageDirectory().toString() + "/" + result;
+//                    result = Environment.getExternalStorageDirectory().toString() + "/" + result;
+                    result = "/data/media/0/" + result;
                     Log.d(TAG, "substring " + result);
                     return result;
                 } catch (UnsupportedEncodingException e) {

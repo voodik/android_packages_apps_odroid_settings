@@ -2,8 +2,8 @@ package com.hardkernel.odroid.settings;
 
 import android.os.Bundle;
 import android.os.SystemProperties;
-import android.support.v7.preference.Preference;
-import android.support.v7.preference.TwoStatePreference;
+import androidx.preference.Preference;
+import androidx.preference.TwoStatePreference;
 import android.widget.Toast;
 
 public class KioskFragment extends LeanbackAddBackPreferenceFragment {
