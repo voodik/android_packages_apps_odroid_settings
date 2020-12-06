@@ -3,7 +3,11 @@
     android:title="@string/update">
     <Preference
         android:key="update_from_online"
-        android:title="@string/update_from_online" />
+        android:title="@string/update_from_online" >
+        <intent
+            android:targetClass="org.lineageos.updater.UpdatesActivity"
+            android:targetPackage="org.lineageos.updater" />
+    </Preference>
     <Preference
         android:key="selected_server"
         android:enabled="false"

@@ -20,10 +20,10 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.provider.Settings;
-import android.support.v17.preference.LeanbackPreferenceFragment;
-import android.support.v7.preference.Preference;
-import android.support.v7.preference.PreferenceGroup;
-import android.support.v7.preference.TwoStatePreference;
+import androidx.leanback.preference.LeanbackPreferenceFragment;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceGroup;
+import androidx.preference.TwoStatePreference;
 import android.text.TextUtils;
 
 import com.droidlogic.app.HdmiCecManager;

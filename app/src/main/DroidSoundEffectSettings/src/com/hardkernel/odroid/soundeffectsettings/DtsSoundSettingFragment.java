@@ -18,10 +18,10 @@ package com.hardkernel.odroid.soundeffectsettings;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v17.preference.LeanbackPreferenceFragment;
-import android.support.v7.preference.Preference;
-import android.support.v7.preference.PreferenceCategory;
-import android.support.v7.preference.ListPreference;
+import androidx.leanback.preference.LeanbackPreferenceFragment;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.ListPreference;
 import android.util.Log;
 import android.text.TextUtils;
 import android.widget.SeekBar;

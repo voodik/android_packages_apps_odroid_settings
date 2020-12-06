@@ -1,10 +1,11 @@
 package com.hardkernel.odroid.settings.shortcut;
 
+import android.content.Context;
 import android.os.Bundle;
 import com.hardkernel.odroid.settings.LeanbackAddBackPreferenceFragment;
 import com.hardkernel.odroid.settings.R;
 
-import android.support.v7.preference.Preference;
+import androidx.preference.Preference;
 
 public class ShortcutFragment extends LeanbackAddBackPreferenceFragment {
     private static final String KEY_F7 = "shortcut_f7";
@@ -45,6 +46,7 @@ public class ShortcutFragment extends LeanbackAddBackPreferenceFragment {
     }
 
     private void refreshStatus() {
+        ShortcutManager.onReceived(getContext());
         f7Pref.setSummary(ShortcutManager.pkgNameAt(0));
         f8Pref.setSummary(ShortcutManager.pkgNameAt(1));
         f9Pref.setSummary(ShortcutManager.pkgNameAt(2));

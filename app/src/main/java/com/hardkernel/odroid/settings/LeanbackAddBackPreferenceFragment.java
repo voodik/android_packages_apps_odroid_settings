@@ -3,7 +3,7 @@ package com.hardkernel.odroid.settings;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.v17.preference.LeanbackPreferenceFragment;
+import androidx.leanback.preference.LeanbackPreferenceFragment;
 import android.view.View;
 import android.widget.TextView;
 

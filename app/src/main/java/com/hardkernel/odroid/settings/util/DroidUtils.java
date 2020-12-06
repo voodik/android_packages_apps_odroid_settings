@@ -18,7 +18,7 @@ package com.hardkernel.odroid.settings.util;
 
 import android.os.SystemProperties;
 import android.os.Build;
-import android.support.v7.preference.Preference;
+import androidx.preference.Preference;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

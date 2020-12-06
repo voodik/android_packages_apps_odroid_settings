@@ -16,7 +16,7 @@
 
 package com.hardkernel.odroid.settings.util;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.io.FilterInputStream;
 import java.io.IOException;

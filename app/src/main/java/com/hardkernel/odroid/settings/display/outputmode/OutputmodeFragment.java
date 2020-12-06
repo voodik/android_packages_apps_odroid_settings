@@ -22,12 +22,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.RemoteException;
-import android.support.annotation.Keep;
-import android.support.v17.preference.LeanbackPreferenceFragment;
-import android.support.v14.preference.SwitchPreference;
-import android.support.v7.preference.CheckBoxPreference;
-import android.support.v7.preference.Preference;
-import android.support.v7.preference.PreferenceScreen;
+import androidx.annotation.Keep;
+import androidx.leanback.preference.LeanbackPreferenceFragment;
+import androidx.preference.SwitchPreference;
+import androidx.preference.CheckBoxPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceScreen;
 
 import com.hardkernel.odroid.settings.R;
 

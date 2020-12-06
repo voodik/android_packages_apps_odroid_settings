@@ -2,9 +2,9 @@ package com.hardkernel.odroid.settings.cpu;
 
 import android.os.Bundle;
 
-import android.support.v17.preference.LeanbackPreferenceFragment;
-import android.support.v7.preference.Preference;
-import android.support.v7.preference.PreferenceCategory;
+import androidx.leanback.preference.LeanbackPreferenceFragment;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceCategory;
 
 import com.hardkernel.odroid.settings.R;
 import com.hardkernel.odroid.settings.LeanbackAddBackPreferenceFragment;

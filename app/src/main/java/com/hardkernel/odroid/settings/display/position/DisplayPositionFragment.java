@@ -9,13 +9,13 @@ package com.hardkernel.odroid.settings.display.position;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v17.preference.LeanbackPreferenceFragment;
-import android.support.v7.preference.ListPreference;
-import android.support.v7.preference.Preference;
-import android.support.v7.preference.PreferenceScreen;
-import android.support.v7.preference.TwoStatePreference;
-import android.support.v7.preference.PreferenceCategory;
-import android.support.v7.preference.SeekBarPreference;
+import androidx.leanback.preference.LeanbackPreferenceFragment;
+import androidx.preference.ListPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceScreen;
+import androidx.preference.TwoStatePreference;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.SeekBarPreference;
 import android.util.Log;
 
 import com.droidlogic.app.DisplayPositionManager;

@@ -21,6 +21,7 @@ LOCAL_CERTIFICATE := platform
 LOCAL_MODULE_TAGS := optional
 LOCAL_PROGUARD_FLAG_FILES := proguard.cfg
 LOCAL_USE_AAPT2 := true
+LOCAL_PRIVATE_PLATFORM_APIS := true
 
 ifeq ($(shell test $(PLATFORM_SDK_VERSION) -ge 26 && echo OK),OK)
 LOCAL_PROPRIETARY_MODULE := true
@@ -30,25 +31,16 @@ endif
 
 #include frameworks/base/packages/SettingsLib/common.mk
 LOCAL_JAVA_LIBRARIES := droidlogic droidlogic-tv
-LOCAL_STATIC_JAVA_LIBRARIES := \
-    android-support-v7-recyclerview \
-    android-support-v7-preference \
-    android-support-v7-appcompat \
-    android-support-v14-preference \
-    android-support-v17-preference-leanback \
-    android-support-v17-leanback
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+    androidx.legacy_legacy-support-v4 \
+    androidx.recyclerview_recyclerview \
+    androidx.preference_preference \
+    androidx.appcompat_appcompat \
+    androidx.legacy_legacy-preference-v14 \
+    androidx.leanback_leanback-preference \
+    androidx.leanback_leanback
 
-LOCAL_RESOURCE_DIR := \
-    $(LOCAL_PATH)/res \
-    $(TOP)/frameworks/support/v17/leanback/res \
-    frameworks/support/v7/preference/res \
-    frameworks/support/v14/preference/res \
-    frameworks/support/v17/preference-leanback/res \
-    frameworks/support/v7/appcompat/res \
-    $(TOP)/frameworks/support/v7/recyclerview/res
-
-LOCAL_AAPT_FLAGS := --auto-add-overlay \
-    --extra-packages android.support.v17.leanback:android.support.v7.preference:android.support.v14.preference:android.support.v17.preference:android.support.v7.appcompat:android.support.v7.recyclerview
+LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res
 
 LOCAL_SRC_FILES := \
     $(call all-java-files-under, java) \
@@ -66,6 +58,8 @@ ifeq ($(FILE), $(wildcard $(FILE)))
 LOCAL_FULL_LIBS_MANIFEST_FILES := $(FILE)
 LOCAL_JACK_COVERAGE_INCLUDE_FILTER := com.hardkernel.odroid.settings*
 endif
+
+LOCAL_JNI_SHARED_LIBRARIES := libsystemcontrol_jni
 
 include $(BUILD_PACKAGE)
 

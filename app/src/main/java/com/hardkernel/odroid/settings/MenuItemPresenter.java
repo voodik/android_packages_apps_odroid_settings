@@ -26,7 +26,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.support.v17.leanback.widget.Presenter;
+import androidx.leanback.widget.Presenter;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;

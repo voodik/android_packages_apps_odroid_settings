@@ -196,6 +196,12 @@
                 <action android:name="android.intent.action.PACKAGE_INSTALL" />
             </intent-filter>
         </receiver>
+        <receiver android:name=".UsbGpsReceiver">
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+                <action android:name="android.hardware.usb.action.USB_DEVICE_DETACHED" />
+            </intent-filter>
+        </receiver>
 
         <service android:name=".OdroidService" />
     </application>
