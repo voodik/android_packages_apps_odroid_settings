@@ -312,4 +312,6 @@
     <string name="overlays">DTB Overlay List</string>
     <string name="overlay_size">DTBO Size Resize</string>
     <string name="overlay_title">DTB Overlay</string>
+    <string name="landscape_0">0</string>
+    <string name="landscape_180">180</string>
 </resources>
