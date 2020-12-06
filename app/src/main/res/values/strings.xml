@@ -71,6 +71,8 @@
     <string name="pref_force_shutdown_without_dialog_title">Force shutdown without dialog</string>
     <string name="pref_disable_usb_perms_dialog">pref_disable_usb_perms_dialog</string>
     <string name="pref_disable_usb_perms_dialog_title">Disable USB permission dialog</string>
+    <string name="pref_enable_hdmi_cec">pref_enable_hdmi_cec</string>
+    <string name="pref_enable_hdmi_cec_title">Enable HDMI-CEC Service</string>
     <!-- Preference which manages Ethernet settings. -->
     <string name="ethernet_settings">Ethernet settings</string>
     <string name="pref_static_ip">pref_static_ip</string>

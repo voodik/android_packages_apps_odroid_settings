@@ -47,4 +47,8 @@
         android:key="@string/pref_disable_usb_perms_dialog"
         android:title="@string/pref_disable_usb_perms_dialog_title" />
 
+    <SwitchPreference
+        android:key="@string/pref_enable_hdmi_cec"
+        android:title="@string/pref_enable_hdmi_cec_title" />
+
 </PreferenceScreen>
